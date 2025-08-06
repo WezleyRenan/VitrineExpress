@@ -31,30 +31,51 @@ namespace VitrineExpress.Pages.Account
             [Required(ErrorMessage = "O campo Senha é obrigatório.")]
             [DataType(DataType.Password)]
             public string Senha { get; set; }
+
+            // Propriedade para receber o valor da nossa nova checkbox
+            public bool QuerSerLojista { get; set; }
         }
 
-        public void OnGet()
+        public void OnGet(string returnUrl = null)
         {
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
+            // 1. Cria e salva o registro do 'Usuario' primeiro
             var usuario = new Usuario
             {
                 Nome = Input.Nome,
                 Email = Input.Email,
-                Senha = Input.Senha // ATENÇÃO: Em um projeto real, a senha NUNCA deve ser salva assim. Use hash!
+                Senha = Input.Senha
             };
 
             _context.Usuarios.Add(usuario);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(); // O 'usuario.Id' é gerado aqui pelo banco
 
-            // Após o registro, redireciona para a página de login, como solicitado.
+            // --- INÍCIO DA NOVA LÓGICA ---
+
+            // 2. Verifica se o usuário marcou a caixa para ser lojista
+            if (Input.QuerSerLojista)
+            {
+                // 3. Se marcou, cria um novo registro 'Lojista'
+                var novoLojista = new Lojista
+                {
+                    // 4. A linha mais importante: liga o 'Lojista' ao 'Usuario' que acabamos de criar
+                    UsuarioId = usuario.Id
+                };
+
+                _context.Lojistas.Add(novoLojista);
+                await _context.SaveChangesAsync(); // Salva o novo registro de Lojista no banco
+            }
+
+            // --- FIM DA NOVA LÓGICA ---
+
             return RedirectToPage("./Login");
         }
     }

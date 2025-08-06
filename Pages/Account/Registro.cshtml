@@ -2,7 +2,7 @@
 @model VitrineExpress.Pages.Account.RegisterModel
 @{
     ViewData["Title"] = "Cadastrar";
-    // Etapa 1: Usar o mesmo layout da página de login para manter a consistência visual.
+    // Usa o layout especial de login/registro para um visual limpo e centralizado.
     Layout = "_LayoutLogin";
 }
 
@@ -29,6 +29,13 @@
             <input asp-for="Input.Senha" class="form-control" autocomplete="new-password" placeholder="Crie uma senha" />
             <label asp-for="Input.Senha">Senha</label>
             <span asp-validation-for="Input.Senha" class="text-danger"></span>
+        </div>
+
+        <div class="form-check mb-3">
+            <input asp-for="Input.QuerSerLojista" class="form-check-input" />
+            <label asp-for="Input.QuerSerLojista" class="form-check-label">
+                Quero me cadastrar como lojista para vender produtos
+            </label>
         </div>
 
         <div class="d-grid">
