@@ -1,0 +1,84 @@
+﻿@page
+@model VitrineExpress.Pages.Lojas.CreateModel
+
+@{
+    ViewData["Title"] = "Cadastrar Nova Loja";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <form method="post">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="my-0 font-weight-normal">Informações da Loja</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text mb-4">Preencha os dados abaixo para registrar uma nova loja em sua conta.</p>
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Loja.Nome" class="form-label fw-bold"></label>
+                                <input asp-for="Loja.Nome" class="form-control" placeholder="Ex: Boutique da Maria" />
+                                <span asp-validation-for="Loja.Nome" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Loja.Cnpj" class="form-label fw-bold"></label>
+                                <input asp-for="Loja.Cnpj" class="form-control" placeholder="00.000.000/0000-00" />
+                                <span asp-validation-for="Loja.Cnpj" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Loja.Descricao" class="form-label fw-bold"></label>
+                            <textarea asp-for="Loja.Descricao" class="form-control" rows="3" placeholder="Fale um pouco sobre sua loja, seus produtos e sua história."></textarea>
+                            <span asp-validation-for="Loja.Descricao" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Loja.TelefoneContato" class="form-label fw-bold"></label>
+                            <input asp-for="Loja.TelefoneContato" class="form-control" placeholder="(79) 99999-9999" />
+                            <span asp-validation-for="Loja.TelefoneContato" class="text-danger"></span>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <h5 class="mb-3">Configurações de Funcionamento</h5>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Loja.StatusAtual" class="form-label fw-bold"></label>
+                                <select asp-for="Loja.StatusAtual" asp-items="Html.GetEnumSelectList<VitrineExpress.Models.StatusLoja>()" class="form-select"></select>
+                                <span asp-validation-for="Loja.StatusAtual" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-check form-switch mb-2">
+                            <input asp-for="Loja.EntregaDisponivel" class="form-check-input" type="checkbox" role="switch" />
+                            <label asp-for="Loja.EntregaDisponivel" class="form-check-label">Oferece entrega a domicílio?</label>
+                        </div>
+                        <div class="form-check form-switch mb-3">
+                            <input asp-for="Loja.RetiradaDisponivel" class="form-check-input" type="checkbox" role="switch" />
+                            <label asp-for="Loja.RetiradaDisponivel" class="form-check-label">Permite retirada no local?</label>
+                        </div>
+
+                    </div>
+                    <div class="card-footer bg-light text-end">
+                        <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+                        <input type="submit" value="Cadastrar Loja" class="btn btn-primary" />
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

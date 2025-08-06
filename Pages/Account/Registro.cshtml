@@ -1,0 +1,46 @@
+﻿@page
+@model VitrineExpress.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Cadastrar";
+    // Etapa 1: Usar o mesmo layout da página de login para manter a consistência visual.
+    Layout = "_LayoutLogin";
+}
+
+<div class="login-register-card">
+    <h1>Crie sua Conta</h1>
+    <p class="text-center text-muted mb-4">É rápido e fácil.</p>
+
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+
+        <div class="form-floating mb-3">
+            <input asp-for="Input.Nome" class="form-control" placeholder="Seu nome completo" />
+            <label asp-for="Input.Nome">Nome</label>
+            <span asp-validation-for="Input.Nome" class="text-danger"></span>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="seu@email.com" />
+            <label asp-for="Input.Email">Email</label>
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-floating mb-4">
+            <input asp-for="Input.Senha" class="form-control" autocomplete="new-password" placeholder="Crie uma senha" />
+            <label asp-for="Input.Senha">Senha</label>
+            <span asp-validation-for="Input.Senha" class="text-danger"></span>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
+        </div>
+
+        <div class="link-container">
+            <a asp-page="./Login">Já tem uma conta? Faça o login</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

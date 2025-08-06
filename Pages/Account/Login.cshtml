@@ -1,0 +1,41 @@
+﻿@page
+@model VitrineExpress.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Entrar";
+    // Define um layout vazio para não carregar a barra de navegação padrão
+    Layout = "_LayoutLogin";
+}
+
+<div class="login-register-card">
+    <h1>Seja Bem-Vindo(a) ao VitrineExpress</h1>
+    <p class="text-center text-muted mb-4">Entre com sua conta para continuar</p>
+
+    <form id="account" method="post">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+
+        <div class="form-floating mb-3">
+            <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="seu@email.com" />
+            <label asp-for="Input.Email" class="form-label">Email</label>
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-floating mb-4">
+            <input asp-for="Input.Senha" class="form-control" autocomplete="current-password" placeholder="Sua senha" />
+            <label asp-for="Input.Senha" class="form-label">Senha</label>
+            <span asp-validation-for="Input.Senha" class="text-danger"></span>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">Entrar</button>
+        </div>
+
+        <div class="link-container">
+            <a asp-page="./Registro">Não tem uma conta? Cadastre-se agora!!</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

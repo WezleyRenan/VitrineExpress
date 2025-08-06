@@ -1,0 +1,53 @@
+/* Estilos gerais para o corpo da página de login/registro */
+body.login-register-body {
+    background-color: #f0f2f5; /* Um cinza bem claro para o fundo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* O cartão/container do formulário */
+.login-register-card {
+    width: 100%;
+    max-width: 420px; /* Largura máxima do formulário */
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border: 1px solid #ddd;
+}
+
+    .login-register-card h1 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+
+    .login-register-card .form-floating label {
+        color: #6c757d;
+    }
+
+    .login-register-card .btn-primary {
+        padding: 0.75rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 6px;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .login-register-card .link-container {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+        .login-register-card .link-container a {
+            color: #0d6efd;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+            .login-register-card .link-container a:hover {
+                text-decoration: underline;
+            }
